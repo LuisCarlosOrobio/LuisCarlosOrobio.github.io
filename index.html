@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<!--
+  Single-file personal site. No build step, no dependencies, no web fonts,
+  no network requests. Open it in a browser; drop it on any static host.
+
+  TO MAKE IT YOURS, edit:
+    1. The bio paragraph in <header> — it is a guess, rewrite it
+    2. The href="#" placeholders (GitHub, email, CV)
+    3. The project entries (each is one <li class="entry">)
+    4. The links in "Writing" and "Elsewhere"
+    5. The date in the footer
+
+  Each project should eventually get its own page — copy this file to
+  projects/visual-web-ai.html, strip the list, and write the real post.
+  Replace the href="#" placeholders when you do.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luis Carlos Orobio Barquín</title>
+<meta name="description" content="Luis Carlos Orobio Barquín — machine learning systems, graphics, and interfaces.">
+<style>
+  :root {
+    --paper:  #fdfdfb;
+    --ink:    #16161a;
+    --muted:  #6e6e73;
+    --rule:   #e5e5e0;
+    --link:   #2b4a7d;
+
+    --serif: Charter, "Bitstream Charter", "Iowan Old Style", "Source Serif Pro", Georgia, serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #131316;
+      --ink:   #e8e8e6;
+      --muted: #97979c;
+      --rule:  #2a2a2f;
+      --link:  #8fb0dc;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    padding: 5rem 1.5rem 6rem;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 18px/1.6 var(--serif);
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
+  }
+
+  .page { max-width: 40rem; margin: 0 auto; }
+
+  a {
+    color: var(--link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  /* ---- header ---- */
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .tagline {
+    margin: 0.35rem 0 1.75rem;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  .bio { margin: 0 0 3.5rem; }
+  .bio p { margin: 0 0 1rem; }
+  .bio p:last-child { margin-bottom: 0; }
+
+  /* ---- sections ---- */
+
+  section { margin-bottom: 3.5rem; }
+  section:last-of-type { margin-bottom: 0; }
+
+  h2 {
+    margin: 0 0 1.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+    font: 400 0.6875rem/1 var(--mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  ul { margin: 0; padding: 0; list-style: none; }
+
+  /* ---- project entries: year hangs in the left margin ---- */
+
+  .entry {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    column-gap: 1.25rem;
+    margin-bottom: 2.25rem;
+  }
+  .entry:last-child { margin-bottom: 0; }
+
+  .year {
+    font: 400 0.75rem/1.9 var(--mono);
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .entry h3 {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+  }
+
+  .stack {
+    margin: 0.15rem 0 0.5rem;
+    font: 400 0.75rem/1.5 var(--mono);
+    color: var(--muted);
+  }
+
+  .entry p {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .links {
+    margin-top: 0.5rem !important;
+    font: 400 0.75rem var(--mono) !important;
+  }
+  .links a { margin-right: 1.25rem; }
+
+  /* ---- writing + elsewhere ---- */
+
+  .list li {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    column-gap: 1.25rem;
+    margin-bottom: 0.85rem;
+  }
+  .list li:last-child { margin-bottom: 0; }
+  .list .year { line-height: 1.6; }
+  .list .title { font-size: 1rem; }
+
+  .inline { font-size: 1rem; }
+  .inline li { margin-bottom: 0.5rem; }
+  .inline a { overflow-wrap: anywhere; }
+  .inline li:last-child { margin-bottom: 0; }
+  .inline .label {
+    display: inline-block;
+    width: 3.5rem;
+    margin-right: 1.25rem;
+    font: 400 0.75rem var(--mono);
+    color: var(--muted);
+  }
+
+  footer {
+    margin-top: 5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    font: 400 0.75rem var(--mono);
+    color: var(--muted);
+  }
+
+  /* ---- narrow screens: year moves inline, above the title ---- */
+
+  @media (max-width: 34rem) {
+    body { padding-top: 3.5rem; font-size: 17px; }
+    .entry, .list li { display: block; }
+    .year { display: block; line-height: 1.4; margin-bottom: 0.15rem; }
+    .inline .label { width: auto; margin-right: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header>
+    <h1>Luis Carlos Orobio Barquín</h1>
+    <p class="tagline">Machine learning systems, graphics, and interfaces.</p>
+    <div class="bio">
+      <p>Computer systems engineering student at Universidad An&aacute;huac in
+      Mexico City. I build things that put models somewhere unusual — on the
+      GPU in your browser, inside a headset, behind a face. Most of what
+      follows started as a question about whether something was possible at
+      all.</p>
+      <p>Code on GitHub under
+      <a href="https://github.com/graphpilled">graphpilled</a> and
+      <a href="https://github.com/LuisCarlosOrobio">LuisCarlosOrobio</a>.
+      Reachable at
+      <a href="mailto:luiscarlosorobiobarquin@protonmail.com">luiscarlosorobiobarquin@protonmail.com</a>.</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>Projects</h2>
+    <ul>
+
+      <li class="entry">
+        <div class="year">2026</div>
+        <div>
+          <h3><a href="https://graphpilled.github.io/visual-web-ai/">visual-web-ai</a></h3>
+          <p class="stack">ReScript · WGSL · WebGPU</p>
+          <p>A neural network compiler and runtime that runs entirely in the
+          browser. ReScript generates optimized WGSL compute shaders, WebGPU
+          executes them on the GPU, and autograd handles backpropagation.
+          No server.</p>
+          <p class="links"><a href="https://graphpilled.github.io/visual-web-ai/demo.html">demo</a>
+          <a href="https://github.com/graphpilled/visual-web-ai">code</a></p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="year">2023–</div>
+        <div>
+          <h3><a href="https://github.com/LuisCarlosOrobio/andropia">Andropia</a></h3>
+          <p class="stack">Python · Three.js · VRM · WebGL</p>
+          <p>A deterministic sandbox for embodied intelligence: language models
+          inhabiting bodies in a shared 3D world, perceiving it, moving through
+          it, and talking to each other. Beings are told what is around them in
+          words rather than coordinates, and act by writing tags inline in their
+          speech. A seed plus the intent log replays any run exactly — replay
+          never calls a model, so a run reproduces whatever the temperature was
+          and whether or not the endpoint still exists.</p>
+          <p class="links"><a href="https://github.com/LuisCarlosOrobio/andropia/blob/main/brand/demo.mp4">demo video</a>
+          <a href="https://github.com/LuisCarlosOrobio/andropia">code</a></p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="year">2025</div>
+        <div>
+          <h3><a href="#">Geometric ML for VR</a></h3>
+          <p class="stack">Geometric deep learning · WebXR · Hand tracking</p>
+          <p>A library for assembling geometric machine learning models inside
+          VR, where the architecture is specified through microgestures rather
+          than written out.</p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="year">2024</div>
+        <div>
+          <h3><a href="https://github.com/graphpilled/wormholesim">Symbolic tensor calculus for general relativity</a></h3>
+          <p class="stack">OCaml · js_of_ocaml · Three.js</p>
+          <p>Give it a metric tensor and it derives the Christoffel symbols,
+          Riemann and Ricci tensors, Einstein tensor, and geodesics by exact
+          symbolic differentiation — nothing hardcoded, every algebraic step
+          traceable. Compiles to JavaScript, so the whole engine runs in the
+          browser alongside a Three.js embedding diagram. Ships with
+          Morris-Thorne, Ellis, and zero-tidal-force wormhole metrics.</p>
+          <p class="links"><a href="https://graphpilled.github.io/wormholesim/wormhole-viz/index.html">demo</a>
+          <a href="https://github.com/graphpilled/wormholesim">code</a></p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="year">2024</div>
+        <div>
+          <h3><a href="#">Screenwriting by probabilistic graph</a></h3>
+          <p class="stack">Fine-tuning · Probabilistic graphical models</p>
+          <p>A language model fine-tuned on a hundred art films that generates
+          scripts by sampling scene graphs, rather than continuing a sequence
+          left to right.</p>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <section>
+    <h2>Writing</h2>
+    <ul class="list">
+      <li>
+        <div class="year">2026</div>
+        <div class="title"><a href="#">Compiling autograd to compute shaders</a></div>
+      </li>
+      <li>
+        <div class="year">2025</div>
+        <div class="title"><a href="#">What a language model does with a body</a></div>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Elsewhere</h2>
+    <ul class="inline">
+      <li><span class="label">github</span><a href="https://github.com/graphpilled">github.com/graphpilled</a></li>
+      <li><span class="label"></span><a href="https://github.com/LuisCarlosOrobio">github.com/LuisCarlosOrobio</a></li>
+      <li><span class="label">email</span><a href="mailto:luiscarlosorobiobarquin@protonmail.com">luiscarlosorobiobarquin@protonmail.com</a></li>
+      <li><span class="label">cv</span><a href="#">PDF</a></li>
+    </ul>
+  </section>
+
+  <footer>Last updated July 2026</footer>
+
+</main>
+</body>
+</html>
