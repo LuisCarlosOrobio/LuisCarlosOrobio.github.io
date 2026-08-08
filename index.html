@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <!--
   Single-file personal site. No build step, no dependencies, no web fonts,
-  no network requests. Open it in a browser; drop it on any static host.
+  no network requests. Drop it on any static host.
 
-  TO MAKE IT YOURS, edit:
-    1. The bio paragraph in <header> — it is a guess, rewrite it
-    2. The href="#" placeholders (GitHub, email, CV)
-    3. The project entries (each is one <li class="entry">)
-    4. The links in "Writing" and "Elsewhere"
-    5. The date in the footer
-
-  Each project should eventually get its own page — copy this file to
-  projects/visual-web-ai.html, strip the list, and write the real post.
-  Replace the href="#" placeholders when you do.
+  NEXT: write the project pages. Copy this file to projects/andropia.html,
+  strip the lists, keep the header and CSS, and write the real post.
+  Then point the project title at it.
 -->
 <html lang="en">
 <head>
@@ -123,6 +116,8 @@
     font-variant-numeric: tabular-nums;
   }
 
+  .entry em { font-style: italic; }
+
   .entry h3 {
     margin: 0;
     font-size: 1.0625rem;
@@ -194,17 +189,25 @@
 
   <header>
     <h1>Luis Carlos Orobio Barquín</h1>
-    <p class="tagline">Machine learning systems, graphics, and interfaces.</p>
+    <p class="tagline">Compilers, symbolic engines, and machine learning systems.</p>
     <div class="bio">
-      <p>Computer systems engineering student at Universidad An&aacute;huac in
-      Mexico City. I build things that put models somewhere unusual — on the
-      GPU in your browser, inside a headset, behind a face. Most of what
-      follows started as a question about whether something was possible at
-      all.</p>
-      <p>Code on GitHub under
+      <p>I build mathematical substrate: the layer underneath the thing most
+      people build. A compiler that emits GPU kernels rather than a model
+      trained on them. An algebra that derives what a spacetime is from its
+      metric rather than a renderer that draws one.</p>
+      <p>The method doesn't change with the language. The structure of the
+      problem — 208 tensor operations, the tensor algebra of general
+      relativity, Clifford algebra, the state of a world — goes into an
+      algebraic data type, so the compiler refuses to let a case go unhandled.
+      The core stays pure and total; GPUs, networks, and clocks live at the
+      edges. Then it's checked against something known: analytic gradients,
+      closed-form solutions, exact replay. So far that's been ReScript, OCaml,
+      Julia, and Python, and it has been the same idea every time.</p>
+      <p>Computer systems engineering at Universidad An&aacute;huac, Mexico
+      City. Everything below was built independently. Code on GitHub under
       <a href="https://github.com/graphpilled">graphpilled</a> and
-      <a href="https://github.com/LuisCarlosOrobio">LuisCarlosOrobio</a>.
-      Reachable at
+      <a href="https://github.com/LuisCarlosOrobio">LuisCarlosOrobio</a>;
+      reachable at
       <a href="mailto:luiscarlosorobiobarquin@protonmail.com">luiscarlosorobiobarquin@protonmail.com</a>.</p>
     </div>
   </header>
@@ -212,20 +215,6 @@
   <section>
     <h2>Projects</h2>
     <ul>
-
-      <li class="entry">
-        <div class="year">2026</div>
-        <div>
-          <h3><a href="https://graphpilled.github.io/visual-web-ai/">visual-web-ai</a></h3>
-          <p class="stack">ReScript · WGSL · WebGPU</p>
-          <p>A neural network compiler and runtime that runs entirely in the
-          browser. ReScript generates optimized WGSL compute shaders, WebGPU
-          executes them on the GPU, and autograd handles backpropagation.
-          No server.</p>
-          <p class="links"><a href="https://graphpilled.github.io/visual-web-ai/demo.html">demo</a>
-          <a href="https://github.com/graphpilled/visual-web-ai">code</a></p>
-        </div>
-      </li>
 
       <li class="entry">
         <div class="year">2023–</div>
@@ -236,22 +225,52 @@
           inhabiting bodies in a shared 3D world, perceiving it, moving through
           it, and talking to each other. Beings are told what is around them in
           words rather than coordinates, and act by writing tags inline in their
-          speech. A seed plus the intent log replays any run exactly — replay
-          never calls a model, so a run reproduces whatever the temperature was
-          and whether or not the endpoint still exists.</p>
+          speech.</p>
+          <p>The world step is a pure function of state, intents, and dt. A model's
+          reply is never a state change — it becomes intents, and the tick that
+          applies them records them. So a seed plus the intent log replays any run
+          exactly, without calling a model, whatever the temperature was and whether
+          or not the endpoint still exists. Started in 2023, before this was a
+          genre. 533 tests, no browser required.</p>
           <p class="links"><a href="https://github.com/LuisCarlosOrobio/andropia/blob/main/brand/demo.mp4">demo video</a>
           <a href="https://github.com/LuisCarlosOrobio/andropia">code</a></p>
         </div>
       </li>
 
       <li class="entry">
+        <div class="year">2026</div>
+        <div>
+          <h3><a href="https://github.com/graphpilled/visual-web-ai">visual-web-ai</a></h3>
+          <p class="stack">ReScript · WGSL · WebGPU</p>
+          <p>A neural network compiler and runtime that runs entirely in the
+          browser. ReScript generates optimized WGSL compute shaders, WebGPU
+          executes them on the GPU, autograd handles backpropagation. No server.</p>
+          <p>208 operations as algebraic variants, which means adding one breaks
+          the build until shape inference, a forward kernel, and a backward kernel
+          all exist — a missing gradient is a compile error rather than a wrong
+          number at 3am. INT4 GPTQ matmul, tested against Qwen 2.5 7B in a
+          tab.</p>
+          <p class="links"><a href="https://graphpilled.github.io/visual-web-ai/demo.html">demo</a>
+          <a href="https://github.com/graphpilled/visual-web-ai">code</a></p>
+        </div>
+      </li>
+
+      <li class="entry">
         <div class="year">2025</div>
         <div>
-          <h3><a href="#">Geometric ML for VR</a></h3>
-          <p class="stack">Geometric deep learning · WebXR · Hand tracking</p>
-          <p>A library for assembling geometric machine learning models inside
-          VR, where the architecture is specified through microgestures rather
-          than written out.</p>
+          <h3><a href="https://github.com/LuisCarlosOrobio/GeometricAI">GeometricAI</a></h3>
+          <p class="stack">Julia · Geometric algebra · Riemannian optimization</p>
+          <p>A from-scratch geometric machine learning library: Clifford algebra
+          Cl(3,0), SO(3)/SE(3) Lie groups, Riemannian manifolds with curvature,
+          intrinsic manifold learning, Riemannian Adam that parallel-transports
+          momentum, and a neural layer whose forward pass <em>is</em> the geometric
+          product — multivector weights, exact analytic gradients rather than
+          autodiff.</p>
+          <p>Every exported operation is tested against a known reference, and the
+          README says plainly which parts are verified and which are first-order
+          approximations. Built as the engine for a VR application where you sculpt
+          a classifier by gesturing at the geometry of your data.</p>
+          <p class="links"><a href="https://github.com/LuisCarlosOrobio/GeometricAI">code</a></p>
         </div>
       </li>
 
@@ -260,12 +279,13 @@
         <div>
           <h3><a href="https://github.com/graphpilled/wormholesim">Symbolic tensor calculus for general relativity</a></h3>
           <p class="stack">OCaml · js_of_ocaml · Three.js</p>
-          <p>Give it a metric tensor and it derives the Christoffel symbols,
-          Riemann and Ricci tensors, Einstein tensor, and geodesics by exact
-          symbolic differentiation — nothing hardcoded, every algebraic step
-          traceable. Compiles to JavaScript, so the whole engine runs in the
-          browser alongside a Three.js embedding diagram. Ships with
-          Morris-Thorne, Ellis, and zero-tidal-force wormhole metrics.</p>
+          <p>Give it a metric tensor and it derives the Christoffel symbols, Riemann
+          and Ricci tensors, Einstein tensor, and geodesics by exact symbolic
+          differentiation. Nothing is hardcoded and every algebraic step is
+          traceable, so it shows the derivation rather than just the answer.
+          Metric-agnostic: nothing downstream of the metric knows what a wormhole
+          is. Compiles to JavaScript and runs in the browser alongside a Three.js
+          embedding diagram.</p>
           <p class="links"><a href="https://graphpilled.github.io/wormholesim/wormhole-viz/index.html">demo</a>
           <a href="https://github.com/graphpilled/wormholesim">code</a></p>
         </div>
@@ -274,28 +294,14 @@
       <li class="entry">
         <div class="year">2024</div>
         <div>
-          <h3><a href="#">Screenwriting by probabilistic graph</a></h3>
+          <h3>Cinegraphs</h3>
           <p class="stack">Fine-tuning · Probabilistic graphical models</p>
           <p>A language model fine-tuned on a hundred art films that generates
-          scripts by sampling scene graphs, rather than continuing a sequence
-          left to right.</p>
+          scripts by sampling scene graphs rather than continuing a sequence left to
+          right. Code not yet public.</p>
         </div>
       </li>
 
-    </ul>
-  </section>
-
-  <section>
-    <h2>Writing</h2>
-    <ul class="list">
-      <li>
-        <div class="year">2026</div>
-        <div class="title"><a href="#">Compiling autograd to compute shaders</a></div>
-      </li>
-      <li>
-        <div class="year">2025</div>
-        <div class="title"><a href="#">What a language model does with a body</a></div>
-      </li>
     </ul>
   </section>
 
@@ -305,7 +311,6 @@
       <li><span class="label">github</span><a href="https://github.com/graphpilled">github.com/graphpilled</a></li>
       <li><span class="label"></span><a href="https://github.com/LuisCarlosOrobio">github.com/LuisCarlosOrobio</a></li>
       <li><span class="label">email</span><a href="mailto:luiscarlosorobiobarquin@protonmail.com">luiscarlosorobiobarquin@protonmail.com</a></li>
-      <li><span class="label">cv</span><a href="#">PDF</a></li>
     </ul>
   </section>
 
