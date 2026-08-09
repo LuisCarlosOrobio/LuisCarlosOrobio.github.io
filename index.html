@@ -12,7 +12,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Luis Carlos Orobio Barquín</title>
-<meta name="description" content="Luis Carlos Orobio Barquín — machine learning systems, graphics, and interfaces.">
+<meta name="description" content="Luis Carlos Orobio Barquín — compilers, symbolic engines, and machine learning systems.">
 <style>
   :root {
     --paper:  #fdfdfb;
@@ -117,6 +117,13 @@
   }
 
   .entry em { font-style: italic; }
+
+  .entry code {
+    font: 400 0.85em var(--mono);
+    background: color-mix(in srgb, var(--ink) 6%, transparent);
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+  }
 
   .entry h3 {
     margin: 0;
@@ -258,7 +265,7 @@
       <li class="entry">
         <div class="year">2025</div>
         <div>
-          <h3><a href="https://github.com/LuisCarlosOrobio/GeometricAI">GeometricAI</a></h3>
+          <h3><a href="https://github.com/LuisCarlosOrobio/GeometricAI.jl">GeometricAI.jl</a></h3>
           <p class="stack">Julia · Geometric algebra · Riemannian optimization</p>
           <p>A from-scratch geometric machine learning library: Clifford algebra
           Cl(3,0), SO(3)/SE(3) Lie groups, Riemannian manifolds with curvature,
@@ -266,11 +273,13 @@
           momentum, and a neural layer whose forward pass <em>is</em> the geometric
           product — multivector weights, exact analytic gradients rather than
           autodiff.</p>
-          <p>Every exported operation is tested against a known reference, and the
-          README says plainly which parts are verified and which are first-order
-          approximations. Built as the engine for a VR application where you sculpt
-          a classifier by gesturing at the geometry of your data.</p>
-          <p class="links"><a href="https://github.com/LuisCarlosOrobio/GeometricAI">code</a></p>
+          <p>Registered in Julia's General registry, so it installs with
+          <code>Pkg.add("GeometricAI")</code>. 94 tests against known
+          references, and the README says plainly which parts are verified and
+          which are first-order approximations. Built as the engine for a VR
+          application where you sculpt a classifier by gesturing at the geometry
+          of your data.</p>
+          <p class="links"><a href="https://github.com/LuisCarlosOrobio/GeometricAI.jl">code</a></p>
         </div>
       </li>
 
@@ -294,11 +303,17 @@
       <li class="entry">
         <div class="year">2024</div>
         <div>
-          <h3>Cinegraphs</h3>
-          <p class="stack">Fine-tuning · Probabilistic graphical models</p>
-          <p>A language model fine-tuned on a hundred art films that generates
-          scripts by sampling scene graphs rather than continuing a sequence left to
-          right. Code not yet public.</p>
+          <h3><a href="https://www.youtube.com/watch?v=KdTBs7RqAPk">Cinegraphs</a></h3>
+          <p class="stack">Qwen3-VL · Unsloth/LoRA · FastAPI</p>
+          <p>A vision pipeline extracts narrative structure from a hundred-plus
+          art films into a 10k-example dataset, used to fine-tune
+          Qwen2.5-7B-Instruct so that it generates scripts by sampling scene
+          graphs rather than continuing a sequence left to right. Shipped as a
+          working SaaS served from a single 4090 via vLLM, and posted to
+          Hacker News, where it reached the front page. The corpus is
+          copyrighted, so the code isn't public yet.</p>
+          <p class="links"><a href="https://www.youtube.com/watch?v=KdTBs7RqAPk">demo video</a>
+          <a href="https://news.ycombinator.com/item?id=46933515">show hn</a></p>
         </div>
       </li>
 
@@ -314,7 +329,7 @@
     </ul>
   </section>
 
-  <footer>Last updated July 2026</footer>
+  <footer>Last updated August 2026</footer>
 
 </main>
 </body>
